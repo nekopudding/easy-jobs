@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { response } from 'src/app/mock-posts';
+import { Subscription } from 'rxjs';
 import { JobSearchService } from 'src/app/services/job-search.service';
 
 @Component({
@@ -9,10 +9,13 @@ import { JobSearchService } from 'src/app/services/job-search.service';
 })
 export class PostListComponent {
   postList: any[] = [];
+  postListSubscription: Subscription;
 
-  constructor(private jobSearchService: JobSearchService) {}
-
-  ngOnInit() {
-    this.jobSearchService.searchJobs().subscribe((data) => this.postList = data);
+  constructor(private jobSearchService: JobSearchService) {
+    this.postListSubscription = this.jobSearchService.onJobListChange().subscribe((data) => {
+      this.postList = data
+    });
   }
+
+  ngOnInit() {}
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { JobSearchService } from 'src/app/services/job-search.service';
 
 import { EMPLOYMENT_TYPE, EXPERIENCE_REQUIRED, DATE_POSTED, DropdownItem } from '../../SearchFilters';
 
@@ -37,4 +38,10 @@ export class HeaderComponent {
     {value: DATE_POSTED.week, label: 'Last week'},
     {value: DATE_POSTED.month, label: 'Last month'}
   ]
+
+  constructor(private jobSearchService: JobSearchService) { }
+
+  searchJobs() {
+    this.jobSearchService.searchJobs();
+  }
 }
