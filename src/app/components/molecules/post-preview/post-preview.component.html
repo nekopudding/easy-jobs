@@ -1,1 +1,13 @@
-<p>post-preview works!</p>
+<div [ngClass]="selected ? 'selected' : ''" class="container" (click)="onClick()">
+  <div class="text-container">
+    <div class="row">
+      <h3>{{job_title}}</h3>
+      <span *ngIf="job_location !== ''">{{job_location}}</span>
+    </div>
+    <div class="row">
+      <span>{{job_employer_name}}</span>
+      <span *ngIf="job_offer_expiration_datetime_utc !== ''">{{job_offer_expiration_datetime_utc}}</span>
+    </div>
+  </div>
+</div>
+

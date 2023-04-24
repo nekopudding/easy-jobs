@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  padding: 0 20px;
+  align-items: center;
+  border-top: 1px solid #909090;
+  border-bottom: 1px solid #909090;
+  height: 80px;
+}
+
+.selected {
+  background-color: #838383;
+}
+
+* {
+  white-space: nowrap;
+  min-width: 0;
+  overflow: hidden;
+  user-select: none;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+}
+.text-container {
+  flex: 1;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap;
+  flex: 1;
+}
