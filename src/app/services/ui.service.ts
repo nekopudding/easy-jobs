@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UiService {
   selectedPost: Number = 0;
-  private selectedSubject = new Subject<any>();
+  private selectedSubject = new BehaviorSubject<any>(0);
 
   constructor() { }
 

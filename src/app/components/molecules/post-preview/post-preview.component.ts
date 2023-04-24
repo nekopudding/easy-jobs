@@ -27,6 +27,7 @@ export class PostPreviewComponent {
   }
 
   ngOnInit() {
+    this.selected = this.index === 0;
     this.job_title = this.post.job_title.length > 30 ? this.post.job_title.slice(0, 30) + '...' : this.post.job_title
     this.job_employer_name = this.post.job_employer_name
     this.job_location = this.post.job_city ? `${this.post.job_city}, ${this.post.job_state}, ${this.post.job_country}` : ''
