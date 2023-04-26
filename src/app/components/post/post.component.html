@@ -1,4 +1,4 @@
 <div *ngIf="postList && postList[selected]">
   <h2>{{postList[selected].job_title}}</h2>
-  <p>{{postList[selected].job_description}}</p>
+  <p *ngFor="let desc of getJobDescriptionArray()">{{desc}}</p>
 </div>

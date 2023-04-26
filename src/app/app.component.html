@@ -1,6 +1,10 @@
 <div class="app">
-  <app-header></app-header>
-  <div class="main">
+  <div #ah>
+    <app-header></app-header>
+  </div>
+  <div class="main" [ngStyle]="{
+    'max-height': 'calc(100vh - ' + ah.offsetHeight + 'px)'
+  }">
     <app-post-list></app-post-list>
     <app-post></app-post>
   </div>

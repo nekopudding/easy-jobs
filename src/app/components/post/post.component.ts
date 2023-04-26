@@ -25,4 +25,11 @@ export class PostComponent {
     });
   }
   ngOnInit() {}
+
+  getJobDescriptionArray(): string[] {
+    let description:string = this.postList[this.selected].job_description;
+    //double new line characters
+    let descriptionArr:string[] = description.split('\n');
+    return descriptionArr
+  }
 }
