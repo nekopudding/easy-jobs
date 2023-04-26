@@ -15,6 +15,7 @@ export class HeaderComponent {
   experienceRequired: EXPERIENCE_REQUIRED = EXPERIENCE_REQUIRED.all;
   datePosted: DATE_POSTED = DATE_POSTED.all;
   faSearch = faSearch;
+  logo: string = 'EASYJOBS'
 
   employmentTypeOptions: DropdownItem[] = [
     {value: EMPLOYMENT_TYPE.ALL,label: 'Employment Type'}, 
@@ -44,4 +45,29 @@ export class HeaderComponent {
   searchJobs() {
     this.jobSearchService.searchJobs();
   }
+
+  ngOnInit() {
+    this.randomizeLogo();
+  }
+  randomizeLogo() {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase();
+    const initLogo = 'EASYJOBS';
+    let currIndex = 0;
+    const interval = setInterval(() => {
+      if (currIndex > initLogo.length) {
+        clearInterval(interval);
+        return;
+      }
+      this.logo = initLogo.split('')
+        .map((letter,i) => {
+          if (i < currIndex) {
+            return initLogo[i];
+          }
+          return alphabet[Math.floor(Math.random() * alphabet.length)]
+        })
+        .join('');
+      currIndex += 1/3;
+    }, 30);
+  }
+
 }
