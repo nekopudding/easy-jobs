@@ -2,13 +2,18 @@
   display: flex;
   padding: 0 20px;
   align-items: center;
-  border-top: 1px solid #909090;
-  border-bottom: 1px solid #909090;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
   height: 80px;
+  border-radius: 4px;
 }
 
 .selected {
-  background-color: #838383;
+  // offsets the border inward
+  border: 1px solid transparent;
+  -webkit-box-shadow:inset 0px 0px 0px 2px rgb(175, 175, 175);
+  -moz-box-shadow:inset 0px 0px 0px 2px rgb(175, 175, 175);
+  box-shadow:inset 0px 0px 0px 2px rgb(175, 175, 175);
 }
 
 * {
