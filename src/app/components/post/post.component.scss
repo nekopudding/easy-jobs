@@ -5,7 +5,30 @@
   padding: 12px 40px;
 }
 
+.post-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 40px;
+  gap: 12px;
+  align-items: center;
+}
+.apply-button {
+  padding: 12px 40px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
 p {
   font-size: 16px;
   margin: 12px 0;
+}
+
+h4 { 
+  text-transform: capitalize;
 }

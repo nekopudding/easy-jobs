@@ -37,10 +37,43 @@ button {
   padding: 12px 16px;
   background: #f4b339;
   color: #fff;
-  border-radius: 8px;
+  border-radius: 4px;
   border: none;
+  &:hover {
+    opacity: 0.9;
+  }
+  &:active { 
+    opacity: 0.6;
+  }
 }
 
 a {
   color: #df833e;
+}
+
+// https://www.w3schools.com/css/css_tooltip.asp
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

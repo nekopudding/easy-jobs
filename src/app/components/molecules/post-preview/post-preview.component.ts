@@ -30,8 +30,8 @@ export class PostPreviewComponent {
     this.selected = this.index === 0;
     this.job_title = this.post.job_title.length > 30 ? this.post.job_title.slice(0, 30) + '...' : this.post.job_title
     this.job_employer_name = this.post.job_employer_name
-    this.job_location = this.post.job_city ? `${this.post.job_city}, ${this.post.job_state}, ${this.post.job_country}` : ''
-    this.job_offer_expiration_datetime_utc = this.post.job_offer_expiration_datetime_utc ? new Date(this.post.job_offer_expiration_datetime_utc).toDateString() : ''
+    this.job_location = this.post.job_location
+    this.job_offer_expiration_datetime_utc = this.post.job_offer_expiration_datetime_utc
     this.employer_logo = this.post.employer_logo
   }
 
