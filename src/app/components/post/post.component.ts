@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
 
 import { JobSearchService } from 'src/app/services/job-search.service';
 import { UiService } from 'src/app/services/ui.service';
@@ -11,6 +12,7 @@ import { UiService } from 'src/app/services/ui.service';
 })
 export class PostComponent {
   postList: any[] = [];
+  faClock = faClock;
   postListSubscription: Subscription;
   selected: number = 0;
   selectedSubscription: Subscription;

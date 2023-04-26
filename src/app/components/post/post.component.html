@@ -1,31 +1,41 @@
-<div *ngIf="postList && postList[selected]">
-  <div class="post-header">
-    <div class="header-left">
-      <span class="posted-date" *ngIf="postList[selected].job_posted_at_datetime_utc">{{"Posted On " + postList[selected].job_posted_at_datetime_utc}}</span>
-      <h2>{{postList[selected].job_title}}</h2>
-      <h4>{{postList[selected].job_location}}</h4>
-      <h4>{{postList[selected].job_employment_type}}</h4>
-      <div *ngIf="postList[selected].job_min_salary && postList[selected].job_max_salary">
-        <span>{{postList[selected].job_min_salary + ' - '}}</span>
-        <span>{{postList[selected].job_max_salary + ' '}}</span>
-        <span>{{postList[selected].job_salary_currency}}</span>
-        <span>{{'/ per' + postList[selected].job_salary_period}}</span>
+<div *ngIf="postList && postList[selected]" #container class="container">
+  <div class="post-header" #head>
+    <div class="posted-date" *ngIf="postList[selected].job_posted_at_datetime_utc">{{"Posted On " + postList[selected].job_posted_at_datetime_utc}}</div>
+    <div class="header-flex">
+      <div class="header-left">
+        <h2>{{postList[selected].job_title}}</h2>
+        <div class="location">{{postList[selected].job_location}}</div>
+        <div class="emp-type">{{postList[selected].job_employment_type}}</div>
+        <div *ngIf="postList[selected].job_min_salary && postList[selected].job_max_salary">
+          <span>{{postList[selected].job_min_salary + ' - '}}</span>
+          <span>{{postList[selected].job_max_salary + ' '}}</span>
+          <span>{{postList[selected].job_salary_currency}}</span>
+          <span>{{'/ per' + postList[selected].job_salary_period}}</span>
+        </div>
+        
+        <div>{{postList[selected].job_required_experience}}</div>
       </div>
-      
-      <h4>{{postList[selected].job_required_experience}}</h4>
+      <div class="header-right">
+        <a [href]="postList[selected].job_apply_link" target="_blank" rel="noopener noreferrer">
+          <button class="apply-button" type="submit">Apply</button>
+        </a>
+        <div *ngIf="postList[selected].job_offer_expiration_datetime_utc">
+          <fa-icon [icon]="faClock"></fa-icon>
+          {{postList[selected].job_offer_expiration_datetime_utc}}
+        </div>
+        <a href="">save job</a>
+      </div>
     </div>
-    <div class="header-right">
-      <a [href]="postList[selected].job_apply_link" target="_blank" rel="noopener noreferrer">
-        <button class="apply-button" type="submit">Apply</button>
-      </a>
-      <p *ngIf="postList[selected].job_offer_expiration_datetime_utc">{{"Deadline on " + postList[selected].job_offer_expiration_datetime_utc}}</p>
-      <a href="">save job</a>
+  </div>
+
+  <div [ngStyle]="{height: head.offsetHeight+'px'}"></div>
+  
+  <div class="post-body" [ngStyle]="{height: (container.offsetHeight - head.offsetHeight) + 'px'}">
+    <p *ngFor="let desc of getJobDescriptionArray()">{{desc}}</p>
+    <div *ngFor="let highlight of postList[selected].job_highlights | keyvalue">
+      <h4>{{highlight.key}}</h4>
+      <p>{{highlight.value}}</p>
     </div>
   </div>
   
-  <p *ngFor="let desc of getJobDescriptionArray()">{{desc}}</p>
-  <div *ngFor="let highlight of postList[selected].job_highlights | keyvalue">
-    <h4>{{highlight.key}}</h4>
-    <p>{{highlight.value}}</p>
-  </div>
 </div>

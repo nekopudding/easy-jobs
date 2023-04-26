@@ -1,26 +1,43 @@
 :host {
   flex: 2;
   background: #ffffff;
-  overflow: auto;
-  padding: 12px 40px;
+  position: relative;
+  //set height
 }
-
+.container {
+  height: 100%;
+}
+.posted-date {
+  margin-bottom: 4px;
+}
 .post-header {
+  padding: 8px 40px;
+  border-bottom: 1px solid #e0e0e0;
+  position: absolute;
+  background-color: #fff;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+.header-flex {
   display: flex;
   justify-content: space-between;
 }
-
+h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 20px;
+}
 .header-right {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   margin-right: 40px;
   gap: 12px;
   align-items: center;
 }
 .apply-button {
-  padding: 12px 40px;
-  font-size: 20px;
+  padding: 8px 32px;
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -29,6 +46,12 @@ p {
   margin: 12px 0;
 }
 
-h4 { 
+.emp-type { 
   text-transform: capitalize;
+}
+
+.post-body {
+  padding: 0 40px;
+  padding-bottom: 40px;
+  overflow: auto;
 }
