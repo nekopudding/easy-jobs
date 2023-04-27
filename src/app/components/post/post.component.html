@@ -30,6 +30,7 @@
   <div [ngStyle]="{height: head.offsetHeight+'px'}"></div>
   
   <div class="post-body" [ngStyle]="{height: (container.offsetHeight - head.offsetHeight) + 'px'}">
+    <h4>Job Description</h4>
     <p *ngFor="let desc of getJobDescriptionArray()">{{desc}}</p>
     <div *ngFor="let highlight of postList[selected].job_highlights | keyvalue">
       <h4>{{highlight.key}}</h4>
