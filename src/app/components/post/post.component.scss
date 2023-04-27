@@ -2,16 +2,13 @@
   flex: 2;
   background: #ffffff;
   position: relative;
-  //set height
+  overflow: auto;
 }
 .container {
   height: 100%;
 }
-.posted-date {
-  margin-bottom: 4px;
-}
 .post-header {
-  padding: 8px 40px;
+  padding: 12px 40px;
   border-bottom: 1px solid #e0e0e0;
   position: absolute;
   background-color: #fff;
@@ -32,8 +29,9 @@ h2 {
   display: flex;
   flex-direction: column;
   margin-right: 40px;
-  gap: 12px;
+  gap: 4px;
   align-items: center;
+  margin-top: 8px;
 }
 .apply-button {
   padding: 8px 32px;
@@ -54,4 +52,12 @@ p {
   padding: 0 40px;
   padding-bottom: 40px;
   overflow: auto;
+}
+
+.date {
+  opacity: 0.7;
+}
+
+.save-job {
+  margin-top: 8px;
 }

@@ -22,8 +22,8 @@ export class JobSearchService {
       job_salary_currency,job_salary_period,
       job_required_experience: job_required_experience.required_experience_in_months,
       job_location: job_city ? `${job_city}, ${job_state}, ${job_country}` : '',
-      job_offer_expiration_datetime_utc: job_offer_expiration_datetime_utc ? new Date(job_offer_expiration_datetime_utc).toDateString() : '',
-      job_posted_at_datetime_utc: job_posted_at_datetime_utc ? new Date(job_posted_at_datetime_utc).toDateString() : '',
+      job_offer_expiration_datetime_utc: job_offer_expiration_datetime_utc,
+      job_posted_at_datetime_utc: job_posted_at_datetime_utc,
       job_employment_type: job_employment_type.toLowerCase(),
     }
   });

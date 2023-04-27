@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UiService } from 'src/app/services/ui.service';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-post-preview',
@@ -15,7 +16,9 @@ export class PostPreviewComponent {
   job_employer_name: string = '';
   job_location: string = '';
   job_offer_expiration_datetime_utc: string = '';
+  job_posted_at_datetime_utc: string = '';
   employer_logo: string = '';
+  faClock = faClock;
 
 
   selected: boolean = false;
@@ -32,6 +35,7 @@ export class PostPreviewComponent {
     this.job_employer_name = this.post.job_employer_name
     this.job_location = this.post.job_location
     this.job_offer_expiration_datetime_utc = this.post.job_offer_expiration_datetime_utc
+    this.job_posted_at_datetime_utc = this.post.job_posted_at_datetime_utc
     this.employer_logo = this.post.employer_logo
   }
 

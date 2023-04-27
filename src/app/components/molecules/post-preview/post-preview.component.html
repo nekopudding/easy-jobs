@@ -6,7 +6,9 @@
     </div>
     <div class="row">
       <span>{{job_employer_name}}</span>
-      <span *ngIf="job_offer_expiration_datetime_utc !== ''">{{job_offer_expiration_datetime_utc}}</span>
+      <span *ngIf="job_posted_at_datetime_utc" class="date">
+        <fa-icon [icon]="faClock"></fa-icon>
+      {{job_posted_at_datetime_utc | intlRelativeTime: {} }}</span>
     </div>
   </div>
 </div>

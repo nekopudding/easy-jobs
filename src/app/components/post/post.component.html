@@ -1,6 +1,5 @@
 <div *ngIf="postList && postList[selected]" #container class="container">
   <div class="post-header" #head>
-    <div class="posted-date" *ngIf="postList[selected].job_posted_at_datetime_utc">{{"Posted On " + postList[selected].job_posted_at_datetime_utc}}</div>
     <div class="header-flex">
       <div class="header-left">
         <h2>{{postList[selected].job_title}}</h2>
@@ -19,11 +18,11 @@
         <a [href]="postList[selected].job_apply_link" target="_blank" rel="noopener noreferrer">
           <button class="apply-button" type="submit">Apply</button>
         </a>
-        <div *ngIf="postList[selected].job_offer_expiration_datetime_utc">
+        <div *ngIf="postList[selected].job_offer_expiration_datetime_utc" class="date">
           <fa-icon [icon]="faClock"></fa-icon>
-          {{postList[selected].job_offer_expiration_datetime_utc}}
+          {{postList[selected].job_offer_expiration_datetime_utc | intlRelativeTime: {} }}
         </div>
-        <a href="">save job</a>
+        <a href="" class="save-job">save job</a>
       </div>
     </div>
   </div>

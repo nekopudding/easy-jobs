@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IntlModule } from 'angular-ecmascript-intl';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -24,7 +25,8 @@ import { DropdownMenuComponent } from './components/molecules/dropdown-menu/drop
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    IntlModule
   ],
   providers: [],
   bootstrap: [AppComponent]
