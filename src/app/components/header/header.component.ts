@@ -43,7 +43,8 @@ export class HeaderComponent {
   constructor(private jobSearchService: JobSearchService) { }
 
   searchJobs() {
-    this.jobSearchService.searchJobs();
+    console.log(this.query,this.employmentType,this.experienceRequired,this.datePosted)
+    // this.jobSearchService.searchJobs(this.query,1,'','','');
   }
 
   ngOnInit() {
