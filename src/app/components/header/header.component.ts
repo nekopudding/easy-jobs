@@ -54,7 +54,7 @@ export class HeaderComponent {
 
   searchJobs() {
     const {query,employmentType,experienceRequired,datePosted} = this.formData.value
-    this.jobSearchService.searchJobs(query,1,employmentType,experienceRequired,datePosted);
+    this.jobSearchService.searchJobs(query,employmentType,experienceRequired,datePosted);
   }
 
   ngOnInit() {

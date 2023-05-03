@@ -11,7 +11,7 @@
           <span>{{postList[selected].job_min_salary + ' - '}}</span>
           <span>{{postList[selected].job_max_salary + ' '}}</span>
           <span>{{postList[selected].job_salary_currency}}</span>
-          <span>{{'/ per' + postList[selected].job_salary_period}}</span>
+          <span>{{' per ' + postList[selected].job_salary_period.toLowerCase()}}</span>
         </div>
         
         <div *ngIf="postList[selected].job_required_experience">{{postList[selected].job_required_experience}} months experience req.</div>

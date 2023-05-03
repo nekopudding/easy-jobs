@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { response } from '../mock-posts';
+import { jobs } from '../mock-jobs';
 import { apiKey } from './secrets';
 import { UiService } from './ui.service';
 
@@ -10,26 +10,54 @@ import { UiService } from './ui.service';
   providedIn: 'root'
 })
 export class JobSearchService {
-  jobs: any[] = []
+  jobs: any[] = [];
   jobsSubject = new BehaviorSubject<any>(this.jobs);
   apiUrl: string = 'https://jsearch.p.rapidapi.com/search'
   headers: HttpHeaders = new HttpHeaders({
     'x-rapidapi-host': 'jsearch.p.rapidapi.com',
     'x-rapidapi-key': apiKey
   })
+  isRefreshing: boolean = false;
+  isRefreshingSubscription: Subscription;
+  currRequest: any = {
+    query: '',
+    page: 1,
+    employment_type: '',
+    date_posted: '',
+    experience_required: ''
+  }
   
-  constructor(private http: HttpClient, private uiService: UiService) {}
+  constructor(private http: HttpClient, private uiService: UiService) {
+    this.isRefreshingSubscription = this.uiService.onRefresh().subscribe((isRefreshing: boolean) => this.isRefreshing = isRefreshing);
+  }
 
   ngOnInit() {}
 
   searchJobs(
     query: string,
-    page:Number=1,
     employment_type: string, //FULLTIME,CONTRACTOR,PARTTIME,INTERN
     date_posted: string, //all (default),today,3days,week,month
     experience_required:string, //under_3_years_experience, more_than_3_years_experience, no_experience, no_degree
   ) {
-    if (query.trim() === '') {
+    this.getJobs(query,1,employment_type,date_posted,experience_required);
+  }
+
+  loadMoreJobs() {
+    const {query,page,employment_type,date_posted,experience_required} = this.currRequest;
+    this.getJobs(query,page+1,employment_type,date_posted,experience_required)
+  }
+
+  getJobs(
+    query: string,
+    page: number,
+    employment_type: string, //FULLTIME,CONTRACTOR,PARTTIME,INTERN
+    date_posted: string, //all (default),today,3days,week,month
+    experience_required:string, //under_3_years_experience, more_than_3_years_experience, no_experience, no_degree
+  ) {
+    if (query.trim() === '' || this.isRefreshing) {
+      return;
+    }
+    if (this.jobs.length % 10 !== 0 && page > 1) { //no more jobs to load
       return;
     }
 
@@ -45,16 +73,26 @@ export class JobSearchService {
     try {
       this.uiService.toggleRefresh(true);
       this.http.get(this.apiUrl,options).subscribe((res:any) => {
-        this.jobs = this.mapResponse(res);
+        if (page === 1) {
+          this.jobs = this.mapResponse(res);
+        } else {
+          this.jobs = [...this.jobs,...this.mapResponse(res)];
+        }
+
         this.jobsSubject.next(this.jobs);
+        if(page === 1) {
+          this.currRequest = {query,page: 1,employment_type,date_posted,experience_required};
+        } else {
+          this.currRequest.page = page;
+        }
         this.uiService.toggleRefresh(false);
       });
     } catch(err) {
-      console.log(err);
+      console.error(err);
       this.uiService.toggleRefresh(false);
     }
-    
   }
+
 
   onJobListChange(): Observable<any[]> {
     return this.jobsSubject.asObservable();

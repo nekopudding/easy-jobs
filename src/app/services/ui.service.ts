@@ -23,7 +23,6 @@ export class UiService {
 
   toggleRefresh(isRefreshing: Boolean) {
     this.isRefreshing = isRefreshing;
-    console.log(isRefreshing)
     this.isRefreshingSubject.next(this.isRefreshing);
   }
 
