@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { JobSearchService } from 'src/app/services/job-search.service';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +21,8 @@ export class HeaderComponent {
 
   faSearch = faSearch;
   logo: string = 'EASYJOBS'
+  isRefreshing = false;
+  isRefreshingSubscription: Subscription;
 
   dropdowns= [
     {name: 'employmentType', options: [
@@ -44,7 +48,9 @@ export class HeaderComponent {
     ]}
   ]
 
-  constructor(private jobSearchService: JobSearchService) { }
+  constructor(private jobSearchService: JobSearchService,private uiService: UiService) { 
+    this.isRefreshingSubscription = this.uiService.onRefresh().subscribe((isRefreshing: boolean) => this.isRefreshing = isRefreshing);
+  }
 
   searchJobs() {
     const {query,employmentType,experienceRequired,datePosted} = this.formData.value

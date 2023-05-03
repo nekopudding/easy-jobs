@@ -4,6 +4,7 @@ import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { response } from '../mock-posts';
 import { apiKey } from './secrets';
+import { UiService } from './ui.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class JobSearchService {
     'x-rapidapi-key': apiKey
   })
   
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private uiService: UiService) {}
 
   ngOnInit() {}
 
@@ -41,10 +42,18 @@ export class JobSearchService {
       headers: this.headers,
       params
     }
-    this.http.get(this.apiUrl,options).subscribe((res:any) => {
-      this.jobs = this.mapResponse(res);
-      this.jobsSubject.next(this.jobs);
-    });
+    try {
+      this.uiService.toggleRefresh(true);
+      this.http.get(this.apiUrl,options).subscribe((res:any) => {
+        this.jobs = this.mapResponse(res);
+        this.jobsSubject.next(this.jobs);
+        this.uiService.toggleRefresh(false);
+      });
+    } catch(err) {
+      console.log(err);
+      this.uiService.toggleRefresh(false);
+    }
+    
   }
 
   onJobListChange(): Observable<any[]> {

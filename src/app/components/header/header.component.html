@@ -15,7 +15,17 @@
   >
     <option *ngFor="let option of dropdown.options" [ngValue]="option.value">{{option.label}}</option>
   </select>
-  <button type="submit" class="search-button" (click)="searchJobs()">
+  <button 
+    type="submit" 
+    class="search-button" 
+    (click)="searchJobs()" 
+    [disabled]="isRefreshing"
+    [ngStyle]="isRefreshing ? {
+      backgroundColor: '#ccc',
+      borderColor: 'transparent',
+      pointerEvents: 'none'
+    } : {}"
+  >
     <fa-icon [icon]="faSearch"></fa-icon>
     Search
   </button>
