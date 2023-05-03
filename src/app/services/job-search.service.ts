@@ -3,14 +3,13 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { response } from '../mock-posts';
-import { EMPLOYMENT_TYPE } from '../SearchFilters';
 import { apiKey } from './secrets';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobSearchService {
-  jobs: any[] = this.mapResponse(response)
+  jobs: any[] = []
   jobsSubject = new BehaviorSubject<any>(this.jobs);
   apiUrl: string = 'https://jsearch.p.rapidapi.com/search'
   headers: HttpHeaders = new HttpHeaders({
@@ -29,8 +28,11 @@ export class JobSearchService {
     date_posted: string, //all (default),today,3days,week,month
     experience_required:string, //under_3_years_experience, more_than_3_years_experience, no_experience, no_degree
   ) {
+    if (query.trim() === '') {
+      return;
+    }
 
-    let params:any = { query, page }
+    let params:any = { query: query.trim(), page }
     if (employment_type !== '') params.employment_type = employment_type
     if (date_posted !== '') params.date_posted = date_posted
     if (experience_required !== '') params.experience_required = experience_required

@@ -1,18 +1,20 @@
 <h1 (mouseover)="randomizeLogo()">{{logo}}</h1>
-<form>
-  <input type="text" placeholder="Search keywords, location" class="search-box">
-  <app-dropdown-menu 
-    [name]="'employment-type'"
-    [options]="employmentTypeOptions"
-  ></app-dropdown-menu>
-  <app-dropdown-menu 
-    [name]="'experience-required'"
-    [options]="experienceRequiredOptions"
-  ></app-dropdown-menu>
-  <app-dropdown-menu 
-    [name]="'date-posted'"
-    [options]="datePostedOptions"
-  ></app-dropdown-menu>
+<form [formGroup]="formData">
+  <input 
+    type="text" 
+    placeholder="Search keywords, location" 
+    class="search-box" 
+    name="query"
+    id="query"
+    formControlName="query"
+  >
+  <select *ngFor="let dropdown of dropdowns" 
+    [name]="dropdown.name" 
+    [id]="dropdown.name" 
+    [formControlName]="dropdown.name"
+  >
+    <option *ngFor="let option of dropdown.options" [ngValue]="option.value">{{option.label}}</option>
+  </select>
   <button type="submit" class="search-button" (click)="searchJobs()">
     <fa-icon [icon]="faSearch"></fa-icon>
     Search

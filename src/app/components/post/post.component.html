@@ -1,3 +1,5 @@
+<div *ngIf="!(postList && postList[selected])" #container class="container"><div class="post-header" [ngStyle]="{height: '70px'}"></div></div>
+
 <div *ngIf="postList && postList[selected]" #container class="container">
   <div class="post-header" #head>
     <div class="header-flex">
@@ -12,7 +14,7 @@
           <span>{{'/ per' + postList[selected].job_salary_period}}</span>
         </div>
         
-        <div>{{postList[selected].job_required_experience}}</div>
+        <div *ngIf="postList[selected].job_required_experience">{{postList[selected].job_required_experience}} months experience req.</div>
       </div>
       <div class="header-right">
         <a [href]="postList[selected].job_apply_link" target="_blank" rel="noopener noreferrer">

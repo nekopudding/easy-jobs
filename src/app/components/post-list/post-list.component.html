@@ -1,3 +1,4 @@
+<div *ngIf="postList.length === 0" class="empty">Enter query to view available jobs</div>
 <app-post-preview *ngFor="let post of postList; index as i" 
   [post]="post"
   [index]="i"

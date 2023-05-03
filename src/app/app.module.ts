@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IntlModule } from 'angular-ecmascript-intl';
@@ -10,7 +10,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { PostListComponent } from './components/post-list/post-list.component';
 import { PostComponent } from './components/post/post.component';
 import { PostPreviewComponent } from './components/molecules/post-preview/post-preview.component';
-import { DropdownMenuComponent } from './components/molecules/dropdown-menu/dropdown-menu.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +18,14 @@ import { DropdownMenuComponent } from './components/molecules/dropdown-menu/drop
     PostListComponent,
     PostComponent,
     PostPreviewComponent,
-    DropdownMenuComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     FontAwesomeModule,
-    IntlModule
+    IntlModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
