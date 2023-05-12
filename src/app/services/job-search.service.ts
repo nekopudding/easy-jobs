@@ -66,6 +66,7 @@ export class JobSearchService {
     if (date_posted !== '') params.date_posted = date_posted
     if (experience_required !== '') params.experience_required = experience_required
 
+    console.log(params)
     const options = {
       headers: this.headers,
       params
@@ -73,6 +74,7 @@ export class JobSearchService {
     try {
       this.uiService.toggleRefresh(true);
       this.http.get(this.apiUrl,options).subscribe((res:any) => {
+        console.log(res);
         if (page === 1) {
           this.jobs = this.mapResponse(res);
         } else {
